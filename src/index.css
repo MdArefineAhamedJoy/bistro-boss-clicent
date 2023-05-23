@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* services background image */
+.bg-service{
+    background-image: url('../src/assets/home/chef-service.jpg');
+    height: 380px;
+    width: 95%;
+    margin: auto;
+    background-size: cover;
+}
+
+/* featured background image */
+
+.featured-banner{
+    background-image: linear-gradient(rgba(10, 10, 0, 0.5), rgba(10, 0, 10, 0.5)),url('../src/assets/home/featured.jpg');
+    background-size: cover;
+    opacity: 0.7;
+}
