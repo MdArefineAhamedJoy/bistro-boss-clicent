@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MenuItem = ({ item }) => {
   const { name, price, image, recipe } = item;
@@ -14,7 +15,6 @@ const MenuItem = ({ item }) => {
           <p className="text-yellow-600">${price}</p>
         </div>
       </div>
-      
     </div>
   );
 };
