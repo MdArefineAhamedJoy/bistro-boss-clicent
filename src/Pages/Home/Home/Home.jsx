@@ -23,7 +23,7 @@ const Home = () => {
         subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."
         opacity={"90"}
         imag={service}
-        h={"572px"}
+        h={"700px"}
       ></Cover>
       <PopularMenu></PopularMenu>
       <Featured></Featured>

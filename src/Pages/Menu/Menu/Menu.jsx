@@ -18,8 +18,9 @@ const Menu = () => {
   const soups = menuItem.filter((itme) => itme.category === "soup");
   const salad = menuItem.filter((itme) => itme.category === "salad");
   const pizza = menuItem.filter((itme) => itme.category === "pizza");
+  const drinks = menuItem.filter((itme) => itme.category === "drinks");
 
-  console.log(soups);
+
   return (
     <div>
       <Helmet>
@@ -40,7 +41,7 @@ const Menu = () => {
       <div className="mt-10">
       <SectionTitle heading={'TODAYS OFFER'} subHeading={"Don't miss"}></SectionTitle>
       </div>
-      <MenuCategory item={offerItem}></MenuCategory>
+      <MenuCategory item={offerItem} titles={'dessert'}></MenuCategory>
       </div>
       {/* Dessert itme */}
   
@@ -53,7 +54,7 @@ const Menu = () => {
           opacity={"10"}
           imag={dessertImg}
         ></Cover>
-        <MenuCategory item={dessert}></MenuCategory>
+        <MenuCategory item={dessert} titles={'dessert'}></MenuCategory>
       </div>
       <div className="my-10">
         <Cover
@@ -64,7 +65,7 @@ const Menu = () => {
           opacity={"10"}
           imag={saladImg}
         ></Cover>
-        <MenuCategory item={salad}></MenuCategory>
+        <MenuCategory item={salad} titles={'salad'}></MenuCategory>
       </div>
       <div className="my-10">
         <Cover
@@ -75,7 +76,7 @@ const Menu = () => {
           opacity={"10"}
           imag={pizzaImg}
         ></Cover>
-        <MenuCategory item={pizza}></MenuCategory>
+        <MenuCategory item={pizza} titles={'pizza'}></MenuCategory>
       </div>
       <div className="my-10">
         <Cover
@@ -86,7 +87,18 @@ const Menu = () => {
           opacity={"10"}
           imag={soupsImg}
         ></Cover>
-        <MenuCategory item={soups}></MenuCategory>
+        <MenuCategory item={soups} titles={'soups'}></MenuCategory>
+      </div>
+      <div className="my-10">
+        <Cover
+          w={"w-full"}
+          h={"600px"}
+          subTitle="Would You Like To Your Dish"
+          title={"OUR MENU"}
+          opacity={"10"}
+          imag={soupsImg}
+        ></Cover>
+        <MenuCategory item={drinks} titles={'drinks'}></MenuCategory>
       </div>
     </div>
   );
