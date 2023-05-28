@@ -5,7 +5,6 @@ import NavBar from '../Pages/Sheard/NavBar/NavBar';
 const Main = () => {
     const location = useLocation()
     const isLogin = location.pathname.includes("login") || location.pathname.includes("singUP")
-    console.log(location.pathname)
     return (
         <div>
            {isLogin ||  <NavBar></NavBar>}

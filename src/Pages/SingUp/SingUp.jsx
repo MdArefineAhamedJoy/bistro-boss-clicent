@@ -1,22 +1,32 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from './../../Provider/AuthProvider';
 import Swal from "sweetalert2";
 
 const SingUp = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser,userUpdateProfile} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
+    console.log(data)
     createUser(data.email , data.password)
     .then(res => {
       const results = res.user ;
+      console.log(results)
+      userUpdateProfile(data.name , data.url)
+      .then(res => { 
+        console.log(res)
+      })
+      .catch(error =>{
+        console.log(error)
+      })
       Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -24,6 +34,7 @@ const SingUp = () => {
         showConfirmButton: false,
         timer: 1500
       })
+
     })
   };
   return (
@@ -47,6 +58,21 @@ const SingUp = () => {
                   className="input input-bordered"
                 />
                 {errors.name && (
+                  <span className="text-red-600">This field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  {...register("url")}
+                  type="text"
+                  name="url"
+                  placeholder="url"
+                  className="input input-bordered"
+                />
+                {errors.url && (
                   <span className="text-red-600">This field is required</span>
                 )}
               </div>

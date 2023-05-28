@@ -15,7 +15,7 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const location = useLocation()
   const navigate = useNavigate()
-  const from = location.state?.from?.pathname || "/";
+  const form = location.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -28,14 +28,8 @@ const Login = () => {
     singIn(email, password)
       .then((res) => {
         const user = res.user;
-        Swal.fire({
-          position: 'top-center',
-          icon: 'success',
-          title: 'SingUp  Successfully',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        navigate(from, { replace: true });
+
+        navigate(form, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -47,9 +41,7 @@ const Login = () => {
     const value = e.target.value
     if (validateCaptcha(value, false) == true) {
       setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    } 
   };
   return (
     <div>
@@ -109,6 +101,7 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <input
+                  disabled={disabled}
                   className="btn btn-primary"
                   type="submit"
                   value="Login"

@@ -10,7 +10,7 @@ const NavBar = () => {
     logOut()
     .then(res =>{})
     .then(error =>{
-      console.log(error)
+      
     })
   }
   const listOption = (
