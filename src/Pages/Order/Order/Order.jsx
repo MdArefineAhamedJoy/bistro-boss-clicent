@@ -8,12 +8,13 @@ import FoodCard from "../../../components/FoodCard/FoodCard";
 import OrderTab from "../OrderTab/OrderTab";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+
+
 const Order = () => {
   const catagories = ["salad", "pizza", "soups", "dessert", "drinks"];
   const { category } = useParams();
   const initialIndex = catagories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
-  console.log(tabIndex, category);
   const [menuItem] = useMenu();
 
   const offerItem = menuItem.filter((itme) => itme.category === "offered");

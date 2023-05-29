@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from './../../Provider/AuthProvider';
 import Swal from "sweetalert2";
 
 const SingUp = () => {
   const {createUser,userUpdateProfile} = useContext(AuthContext)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -34,7 +35,7 @@ const SingUp = () => {
         showConfirmButton: false,
         timer: 1500
       })
-
+      navigate('/')
     })
   };
   return (

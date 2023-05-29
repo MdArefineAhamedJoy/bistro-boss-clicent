@@ -2,32 +2,49 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-
+import { FaShoppingCart} from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 const NavBar = () => {
-  const {user,logOut} = useContext(AuthContext)
-  const handelLogOut = ()=>{
-    console.log('logOut')
+  const [cart] = useCart()
+  const { user, logOut } = useContext(AuthContext);
+  const handelLogOut = () => {
+    console.log("logOut");
     logOut()
-    .then(res =>{})
-    .then(error =>{
-      
-    })
-  }
+      .then((res) => {})
+      .then((error) => {});
+  };
   const listOption = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/menu'>Our Menu</Link>
+        <Link to="/menu">Our Menu</Link>
       </li>
-      <li><Link to='/order/salad'> Order Food</Link></li>
-      <li><Link  to='/secret'> Secret</Link></li>
-
       <li>
-       {
-        user ? <><button onClick={handelLogOut} className="btn btn-primary">LogOut</button></> :  <Link to='/login'>LogIn</Link>
-       }
+        <Link to="/order/salad"> Order Food</Link>
+      </li>
+      <li>
+        <Link to="/secret"> Secret</Link>
+      </li>
+      <li>
+        <Link to="/dashboard/mycart">
+          <button className="btn gap-2">
+            <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+          </button>
+        </Link>
+      </li>
+      <li>
+        {user ? (
+          <>
+            <button onClick={handelLogOut} className="btn btn-primary">
+              LogOut
+            </button>
+          </>
+        ) : (
+          <Link to="/login">LogIn</Link>
+        )}
       </li>
     </>
   );
@@ -56,16 +73,13 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-
-                {listOption}
+              {listOption}
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">Bistro Boos</a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {listOption}
-          </ul>
+        <div className="navbar-center hidden items-center lg:flex">
+          <ul className="menu menu-horizontal px-1">{listOption}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Get started</a>

@@ -19,3 +19,11 @@
     background-size: cover;
     opacity: 0.7;
 }
+
+
+.drawer-side a.active {
+    color: white;
+  }
+.drawer-side a{
+    background-color: transparent;
+  }
