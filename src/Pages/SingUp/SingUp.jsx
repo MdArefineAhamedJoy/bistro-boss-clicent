@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from './../../Provider/AuthProvider';
+import { AuthContext } from "./../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Sheard/SocialLogin/SocialLogin";
 
 const SingUp = () => {
-  const {createUser,userUpdateProfile} = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { createUser, userUpdateProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,27 +17,36 @@ const SingUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
-    createUser(data.email , data.password)
-    .then(res => {
-      const results = res.user ;
-      console.log(results)
-      userUpdateProfile(data.name , data.url)
-      .then(res => { 
-        console.log(res)
-      })
-      .catch(error =>{
-        console.log(error)
-      })
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'SingUp  Successfully',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      navigate('/')
-    })
+    createUser(data.email, data.password).then((res) => {
+      const results = res.user;
+      userUpdateProfile(data.name, data.url)
+        .then((res) => {
+          const savedUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "SingUp  Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   };
   return (
     <div>
@@ -122,10 +132,10 @@ const SingUp = () => {
             </form>
             <p>
               <small>
-        
-                you already  ? <Link to="/login">Login </Link>
+                you already ? <Link to="/login">Login </Link>
               </small>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
           <div className="text-center  md:w-1/2">
             <h1 className="text-5xl font-bold">Login now!</h1>
