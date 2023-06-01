@@ -16,12 +16,14 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const DeashBoard = () => {
   const [cart] = useCart();
 
   // TODO : Load data from the server to have a dynamic isAdmin base on data
-  const isAdmins = true;
+  // const isAdmins = true;
+  const [isAdmins] = useAdmin()
 
   return (
     <div>

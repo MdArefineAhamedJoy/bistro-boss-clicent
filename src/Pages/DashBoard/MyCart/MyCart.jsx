@@ -71,7 +71,7 @@ const MyCart = () => {
               {/* row 1 */}
               {cart.map((item, index) => (
                 <tr>
-                  <th key={index}>{index + 1}</th>
+                  <th key={item._id}>{index + 1}</th>
                   <td>
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
