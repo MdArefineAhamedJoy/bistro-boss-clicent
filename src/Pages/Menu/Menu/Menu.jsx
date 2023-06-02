@@ -13,6 +13,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Menu = () => {
   const [menuItem] = useMenu();
+ 
   const offerItem = menuItem.filter((itme) => itme.category === "offered");
   const dessert = menuItem.filter((itme) => itme.category === "dessert");
   const soups = menuItem.filter((itme) => itme.category === "soup");

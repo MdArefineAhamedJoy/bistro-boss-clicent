@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 
 const useMenu = () => {
-  const [menuItem, setMenuItem] = useState([]);
-  const [loading, setLoading] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/menu")
-      .then((res) => res.json())
-      .then((data) => {
-        setMenuItem(data);
-      });
-  }, []);
-  return [menuItem, loading];
+  const {data:menuItem=[] , isLoading:loading , refetch} = useQuery({
+    queryKey: ['menu'],
+    queryFn: async () =>{
+      const res = await fetch('http://localhost:5000/menu')
+      return res.json()
+    }
+  })
+  return [menuItem, loading ,  refetch];
 };
 
 export default useMenu;

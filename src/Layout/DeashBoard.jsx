@@ -25,19 +25,20 @@ const DeashBoard = () => {
   // const isAdmins = true;
   const [isAdmins] = useAdmin()
 
+
   return (
     <div>
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content ">
           {/* <!-- Page content here --> */}
-          <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
             Open drawer
           </label>
+          <Outlet></Outlet>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -55,13 +56,13 @@ const DeashBoard = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/">
-                      <FaUtensils />ADD Items
+                    <NavLink to="/dashboard/addItem">
+                      <FaUtensils />ADD Item
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/dashboard/reservation">
-                      <FaThList /> MenageITEM
+                    <NavLink to="/dashboard/menageItem">
+                      <FaThList /> Menage Item
                     </NavLink>
                   </li>
                   <li>
